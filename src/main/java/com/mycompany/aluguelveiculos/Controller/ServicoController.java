@@ -77,5 +77,58 @@ public class ServicoController {
             JOptionPane.showMessageDialog(null, "Veículo não encontrado!", "Aviso", 0);
             return null;
         }
+
+    }
+
+    public void editar(int id, int cnh, String cliente, String modeloVeiculo, Date dataRetirada,
+            Date dataDevolucao, boolean seguro, double valorAluguel, boolean itemDeSeguranca,
+            boolean itemDeArmazenamento, int qtdPassageiro, boolean reboque) {
+
+        int resposta = JOptionPane.showConfirmDialog(
+                null,
+                "Tem certeza que deseja atualizar o veículo?",
+                "Aviso",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        if (resposta == JOptionPane.YES_OPTION) {
+
+            int posicao = pesquisarVeiculo(id);
+
+            Servico servico = ListaServico.getInstance().get(posicao);
+
+            servico.setCnh(cnh);
+            servico.setCliente(cliente);
+            servico.setModeloVeiculo(modeloVeiculo);
+            servico.setDataRetirada(dataRetirada);
+            servico.setDataDevolucao(dataDevolucao);
+            servico.setSeguro(seguro);
+
+            if (servico instanceof Carro) {
+                Carro carro = (Carro) servico;
+                carro.setQtdPassageiro(qtdPassageiro);
+                carro.setReboque(reboque);
+            } else if (servico instanceof Moto) {
+                Moto moto = (Moto) servico;
+                moto.setItemDeSeguranca(itemDeSeguranca);
+                moto.setItemDeArmazenamento(itemDeArmazenamento);
+            }
+
+            ListaServico.getInstance().set(posicao, servico);
+
+            JOptionPane.showMessageDialog(null, "Veículo atualizado com sucesso", "Aviso", 1);
+        }
+    }
+
+    private int pesquisarVeiculo(int id) {
+
+        int posicao = -1;
+
+        for (int i = 0; i < ListaServico.getInstance().size(); i++) {
+            if (ListaServico.getInstance().get(i).getId() == id) {
+                posicao = i;
+            }
+        }
+        return posicao;
     }
 }
