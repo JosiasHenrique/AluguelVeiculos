@@ -117,8 +117,28 @@ public class ServicoController {
             posicaoLinha += 1;
         }
     }
-    
- 
+
+    public void excluir(JTable jTabela) {
+
+      
+        if (jTabela.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione um item na tabela!", "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else {
+            int resposta = JOptionPane.showConfirmDialog(
+                    null,
+                    "Tem certeza que deseja excluir o item?",
+                    "Aviso",
+                    JOptionPane.YES_NO_OPTION
+            );
+
+            if (resposta == JOptionPane.YES_OPTION) {
+                ListaServico.getInstance().remove(jTabela.getSelectedRow());
+                JOptionPane.showMessageDialog(null, "Item excluído com sucesso", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+
+                preencherTabela(jTabela);
+            }
+        }
+    }
 
     public void editar(int id, int cnh, String cliente, String modeloVeiculo, Date dataRetirada,
             Date dataDevolucao, boolean seguro, double valorAluguel, boolean itemDeSeguranca,
