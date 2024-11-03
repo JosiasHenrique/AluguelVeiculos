@@ -7,7 +7,7 @@ public class Moto extends Servico {
     private boolean itemDeSeguranca, itemDeArmazenamento;
 
     public Moto(boolean itemDeSeguranca, boolean itemDeArmazenamento, int id, int cnh, String cliente,
-            String modeloVeiculo, Date dataRetirada, Date dataDevolucao, boolean seguro, double valorAluguel) {
+            String modeloVeiculo, Date dataRetirada, Date dataDevolucao, boolean seguro) {
         super(id, cnh, cliente, modeloVeiculo, dataRetirada, dataDevolucao, seguro);
         this.itemDeSeguranca = itemDeSeguranca;
         this.itemDeArmazenamento = itemDeArmazenamento;

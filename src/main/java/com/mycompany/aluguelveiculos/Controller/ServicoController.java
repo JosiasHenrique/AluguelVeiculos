@@ -1,10 +1,11 @@
 package com.mycompany.aluguelveiculos.Controller;
 
-import com.mycompany.aluguelveiculos.Enum.TipoVeiculo;
 import com.mycompany.aluguelveiculos.Model.Carro;
 import com.mycompany.aluguelveiculos.Model.ListaServico;
 import com.mycompany.aluguelveiculos.Model.Moto;
 import com.mycompany.aluguelveiculos.Model.Servico;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -15,20 +16,33 @@ import javax.swing.table.DefaultTableModel;
 
 public class ServicoController {
 
-    public boolean cadastrar(TipoVeiculo tipoVeiculo, int id, int cnh, String cliente, String modeloVeiculo, Date dataRetirada,
-            Date dataDevolucao, boolean seguro, double valorAluguel, boolean itemDeSeguranca,
+    public boolean cadastrar(String tipoVeiculo, int id, int cnh, String cliente, String modeloVeiculo, String dataRetirada,
+            String dataDevolucao, boolean seguro, boolean itemDeSeguranca,
             boolean itemDeArmazenamento, int qtdPassageiro, boolean reboque) {
+
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date dataRetiradaDate;
+        Date dataDevolucaoDate;
+
+        try {
+            dataRetiradaDate = formato.parse(dataRetirada);
+            dataDevolucaoDate = formato.parse(dataDevolucao);
+        } catch (ParseException e) {
+            System.err.println("Erro ao converter as datas: " + e.getMessage());
+            return false;
+        }
 
         Servico veiculo;
 
         switch (tipoVeiculo) {
-            case CARRO:
+            case "Carro":
                 veiculo = new Carro(qtdPassageiro, reboque, id, cnh, cliente, modeloVeiculo,
-                        dataRetirada, dataDevolucao, seguro, valorAluguel);
+                        dataRetiradaDate, dataDevolucaoDate, seguro);
                 break;
-            case MOTO:
+            case "Moto":
                 veiculo = new Moto(itemDeSeguranca, itemDeArmazenamento, id, cnh, cliente,
-                        modeloVeiculo, dataRetirada, dataDevolucao, seguro, valorAluguel);
+                        modeloVeiculo, dataRetiradaDate, dataDevolucaoDate, seguro);
                 break;
             default:
                 throw new IllegalArgumentException("Tipo de veículo inválido.");
@@ -120,7 +134,6 @@ public class ServicoController {
 
     public void excluir(JTable jTabela) {
 
-      
         if (jTabela.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(null, "Selecione um item na tabela!", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {

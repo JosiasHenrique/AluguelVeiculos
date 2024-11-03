@@ -7,7 +7,7 @@ public class Carro extends Servico {
     private int qtdPassageiro;
     private boolean reboque;
 
-    public Carro(int qtdPassageiro, boolean reboque, int id, int cnh, String cliente, String modeloVeiculo, Date dataRetirada, Date dataDevolucao, boolean seguro, double valorAluguel) {
+    public Carro(int qtdPassageiro, boolean reboque, int id, int cnh, String cliente, String modeloVeiculo, Date dataRetirada, Date dataDevolucao, boolean seguro) {
         super(id, cnh, cliente, modeloVeiculo, dataRetirada, dataDevolucao, seguro);
         this.qtdPassageiro = qtdPassageiro;
         this.reboque = reboque;

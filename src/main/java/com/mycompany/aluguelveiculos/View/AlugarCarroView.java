@@ -4,19 +4,25 @@
  */
 package com.mycompany.aluguelveiculos.View;
 
+import com.mycompany.aluguelveiculos.Controller.ServicoController;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author android
  */
 public class AlugarCarroView extends javax.swing.JFrame {
-    
+
+    private static int id;
 
     /**
      * Creates new form AlugarCarroView
      */
     public AlugarCarroView() {
         initComponents();
-        
+
+        id = id + 1;
     }
 
     /**
@@ -37,8 +43,6 @@ public class AlugarCarroView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtValor = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtDataDevolucao = new javax.swing.JTextField();
@@ -54,16 +58,14 @@ public class AlugarCarroView extends javax.swing.JFrame {
         radioReboqueNao = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
         txtPassageiros = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        comboModeloVeiculo = new javax.swing.JComboBox<>();
         btnCancelar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        selecionaVeiculo = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
-        btnConfirmarMoto = new javax.swing.JButton();
+        btnConfirmar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         txtNomeMoto = new javax.swing.JTextField();
-        jLabel24 = new javax.swing.JLabel();
-        txtValorAluguelMoto = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         txtDataDevolucaoMoto = new javax.swing.JTextField();
@@ -91,15 +93,13 @@ public class AlugarCarroView extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Carro"));
 
-        jLabel2.setText("Nome:");
+        jLabel2.setText("Nome do cliente:");
 
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeActionPerformed(evt);
             }
         });
-
-        jLabel3.setText("Valor do aluguel:");
 
         jLabel4.setText("Data de retirada:");
 
@@ -113,7 +113,7 @@ public class AlugarCarroView extends javax.swing.JFrame {
 
         jLabel10.setText("Modelo do carro:");
 
-        jLabel6.setText("CNH:");
+        jLabel6.setText("CNH(apenas números):");
 
         jLabel7.setText("Seguro:");
 
@@ -133,7 +133,7 @@ public class AlugarCarroView extends javax.swing.JFrame {
 
         jLabel11.setText("Quantidade de Passageiros:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedan", "SUV", "Esportivo" }));
+        comboModeloVeiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedan", "SUV", "Esportivo" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -155,8 +155,6 @@ public class AlugarCarroView extends javax.swing.JFrame {
                                 .addComponent(RadioSeguroSim)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(RadioSeguroNao))
-                            .addComponent(txtValor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -174,7 +172,7 @@ public class AlugarCarroView extends javax.swing.JFrame {
                                     .addComponent(txtDataDevolucao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(comboModeloVeiculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -201,7 +199,7 @@ public class AlugarCarroView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboModeloVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -216,11 +214,7 @@ public class AlugarCarroView extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(radioReboqueSim)
                     .addComponent(radioReboqueNao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         btnCancelar.setText("Cancelar");
@@ -230,32 +224,29 @@ public class AlugarCarroView extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "  ", "Carro", "Moto" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        selecionaVeiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "  ", "Carro", "Moto" }));
+        selecionaVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                selecionaVeiculoActionPerformed(evt);
             }
         });
 
         jLabel12.setText("Escolha o veiculo:");
 
-        btnConfirmarMoto.setText("Confirmar");
+        btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Moto"));
 
-        jLabel23.setText("Nome:");
+        jLabel23.setText("Nome do cliente:");
 
         txtNomeMoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeMotoActionPerformed(evt);
-            }
-        });
-
-        jLabel24.setText("Valor do aluguel:");
-
-        txtValorAluguelMoto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValorAluguelMotoActionPerformed(evt);
             }
         });
 
@@ -271,7 +262,7 @@ public class AlugarCarroView extends javax.swing.JFrame {
 
         jLabel27.setText("Modelo da moto:");
 
-        jLabel28.setText("CNH:");
+        jLabel28.setText("CNH(apenas números):");
 
         jLabel29.setText("Itens de segurança:");
 
@@ -319,8 +310,6 @@ public class AlugarCarroView extends javax.swing.JFrame {
                                 .addComponent(radioSegurancaSim)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(radioSegurancaNao))
-                            .addComponent(txtValorAluguelMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel24)
                             .addComponent(jLabel27)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
@@ -364,10 +353,6 @@ public class AlugarCarroView extends javax.swing.JFrame {
                     .addComponent(jLabel15)
                     .addComponent(radioArmazenamentoSim)
                     .addComponent(radioArmazenamentoNao))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel24)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtValorAluguelMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -378,19 +363,14 @@ public class AlugarCarroView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(89, 89, 89)
-                                .addComponent(btnCancelar)))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancelar))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnConfirmarMoto)
-                                .addGap(53, 53, 53))))
+                            .addComponent(btnConfirmar)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(237, 237, 237)
                         .addComponent(jLabel1))
@@ -398,7 +378,7 @@ public class AlugarCarroView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(selecionaVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -409,7 +389,7 @@ public class AlugarCarroView extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(selecionaVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -417,7 +397,7 @@ public class AlugarCarroView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
-                    .addComponent(btnConfirmarMoto))
+                    .addComponent(btnConfirmar))
                 .addGap(23, 23, 23))
         );
 
@@ -438,21 +418,85 @@ public class AlugarCarroView extends javax.swing.JFrame {
         menu.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void selecionaVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecionaVeiculoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_selecionaVeiculoActionPerformed
 
     private void txtNomeMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeMotoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeMotoActionPerformed
 
-    private void txtValorAluguelMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorAluguelMotoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtValorAluguelMotoActionPerformed
-
     private void txtDataDevolucaoMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataDevolucaoMotoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDataDevolucaoMotoActionPerformed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+
+        int idAluguel = id;
+        int cnh = Integer.parseInt(txtCNH.getText());
+        String cliente = txtNome.getText();
+        String modeloVeiculo = (String) comboModeloVeiculo.getSelectedItem();
+        String tipoVeiculo = (String) selecionaVeiculo.getSelectedItem();
+        String dataRetirada = txtDataRetirada.getText();
+        String dataDevolucao = txtDataDevolucao.getText();
+        boolean seguro, reboque, itemSeguranca, itemArmazenamento;
+        int qtPassageiro = Integer.parseInt(txtPassageiros.getText());
+
+        if (RadioSeguroSim.isSelected()) {
+            seguro = true;
+        } else if (RadioSeguroNao.isSelected()) {
+            seguro = false;
+        } else {
+            seguro = true; // Caso nenhum botão esteja selecionado
+        }
+
+        if (radioSegurancaSim.isSelected()) {
+            itemSeguranca = true;
+        } else if (radioSegurancaNao.isSelected()) {
+            itemSeguranca = false;
+        } else {
+            itemSeguranca = true; // Caso nenhum botão esteja selecionado
+        }
+
+        if (radioReboqueSim.isSelected()) {
+            reboque = true;
+        } else if (radioReboqueNao.isSelected()) {
+            reboque = false;
+        } else {
+            reboque = false; // Caso nenhum botão esteja selecionado
+        }
+
+        if (radioArmazenamentoSim.isSelected()) {
+            itemArmazenamento = true;
+        } else if (radioArmazenamentoSim.isSelected()) {
+            itemArmazenamento = false;
+        } else {
+            itemArmazenamento = false; // Caso nenhum botão esteja selecionado
+        }
+
+        if (radioArmazenamentoSim.isSelected()) {
+            itemArmazenamento = true;
+        } else if (radioArmazenamentoSim.isSelected()) {
+            itemArmazenamento = false;
+        } else {
+            itemArmazenamento = false; // Caso nenhum botão esteja selecionado
+        }
+
+        ServicoController servicoController = new ServicoController();
+
+        if (servicoController.cadastrar(tipoVeiculo, idAluguel, cnh, cliente,
+                modeloVeiculo, dataRetirada, dataDevolucao, seguro, itemSeguranca,
+                itemArmazenamento, qtPassageiro, reboque)) {
+            JOptionPane.showMessageDialog(null, "Aluguel cadastrado com sucesso", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar o aluguel", "Erro!", JOptionPane.ERROR_MESSAGE);
+        }
+
+        this.dispose();
+        MenuAluguelView menu = new MenuAluguelView();
+        menu.setVisible(true);
+
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -494,27 +538,22 @@ public class AlugarCarroView extends javax.swing.JFrame {
     private javax.swing.JRadioButton RadioSeguroSim;
     private javax.swing.ButtonGroup Reboque;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnConfirmarMoto;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton btnConfirmar;
+    private javax.swing.JComboBox<String> comboModeloVeiculo;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -522,8 +561,6 @@ public class AlugarCarroView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton radioArmazenamentoNao;
@@ -533,6 +570,7 @@ public class AlugarCarroView extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioSegurancaNao;
     private javax.swing.JRadioButton radioSegurancaSim;
     private javax.swing.ButtonGroup radioSeguro;
+    private javax.swing.JComboBox<String> selecionaVeiculo;
     private javax.swing.JTextField txtCNH;
     private javax.swing.JTextField txtCNHMoto;
     private javax.swing.JTextField txtDataDevolucao;
@@ -540,11 +578,7 @@ public class AlugarCarroView extends javax.swing.JFrame {
     private javax.swing.JTextField txtDataRetirada;
     private javax.swing.JTextField txtDataRetiradaMoto;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtNome1;
-    private javax.swing.JTextField txtNome2;
     private javax.swing.JTextField txtNomeMoto;
     private javax.swing.JTextField txtPassageiros;
-    private javax.swing.JTextField txtValor;
-    private javax.swing.JTextField txtValorAluguelMoto;
     // End of variables declaration//GEN-END:variables
 }
