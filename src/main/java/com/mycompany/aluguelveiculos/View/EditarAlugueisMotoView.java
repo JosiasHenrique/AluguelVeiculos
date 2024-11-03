@@ -6,14 +6,14 @@ package com.mycompany.aluguelveiculos.View;
 
 /**
  *
- * @author android
+ * @author geova
  */
-public class AlugarMotoView extends javax.swing.JFrame {
+public class EditarAlugueisMotoView extends javax.swing.JFrame {
 
     /**
-     * Creates new form AlugarMotoView
+     * Creates new form EditarAlugueisMotoView
      */
-    public AlugarMotoView() {
+    public EditarAlugueisMotoView() {
         initComponents();
     }
 
@@ -26,8 +26,9 @@ public class AlugarMotoView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ItensSeguranca = new javax.swing.ButtonGroup();
-        ItensArmazenamento = new javax.swing.ButtonGroup();
+        RadioItensSeguranca = new javax.swing.ButtonGroup();
+        RadioArmazenamento = new javax.swing.ButtonGroup();
+        jLabel1 = new javax.swing.JLabel();
         btnConfirmarMoto = new javax.swing.JButton();
         btnCancelarMoto = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -49,20 +50,24 @@ public class AlugarMotoView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         radioArmazenamentoSim = new javax.swing.JRadioButton();
         radioArmazenamentoNao = new javax.swing.JRadioButton();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtIdMoto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnConfirmarMoto.setText("Confirmar");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("Editar Aluguel da Moto");
 
-        btnCancelarMoto.setText("Cancelar");
+        btnConfirmarMoto.setText("Confirmar Alteração");
+
+        btnCancelarMoto.setText("Cancelar Alteração");
         btnCancelarMoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarMotoActionPerformed(evt);
             }
         });
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Moto"));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Editar Cadastro de Moto"));
 
         jLabel23.setText("Nome:");
 
@@ -96,20 +101,24 @@ public class AlugarMotoView extends javax.swing.JFrame {
 
         jLabel29.setText("Itens de segurança:");
 
-        ItensSeguranca.add(radioSegurancaSim);
+        RadioItensSeguranca.add(radioSegurancaSim);
         radioSegurancaSim.setText("Sim");
 
-        ItensSeguranca.add(radioSegurancaNao);
+        RadioItensSeguranca.add(radioSegurancaNao);
         radioSegurancaNao.setText("Não");
 
         jLabel2.setText("Itens de armazenamento:");
         jLabel2.setToolTipText("");
 
-        ItensArmazenamento.add(radioArmazenamentoSim);
+        RadioArmazenamento.add(radioArmazenamentoSim);
         radioArmazenamentoSim.setText("Sim");
 
-        ItensArmazenamento.add(radioArmazenamentoNao);
+        RadioArmazenamento.add(radioArmazenamentoNao);
         radioArmazenamentoNao.setText("Não");
+
+        jLabel3.setText("ID:");
+
+        txtIdMoto.setEditable(false);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -130,25 +139,30 @@ public class AlugarMotoView extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDataRetiradaMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel25))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDataDevolucaoMoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel26, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel29)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(radioSegurancaSim)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(radioSegurancaNao))
-                    .addComponent(txtValorAluguelMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24)
-                    .addComponent(jLabel27)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(radioArmazenamentoSim)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(radioArmazenamentoNao)))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel29)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(radioSegurancaSim)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(radioSegurancaNao))
+                            .addComponent(txtValorAluguelMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel27)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(radioArmazenamentoSim)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(radioArmazenamentoNao))
+                            .addComponent(jLabel3)
+                            .addComponent(txtIdMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -179,7 +193,7 @@ public class AlugarMotoView extends javax.swing.JFrame {
                     .addComponent(jLabel29)
                     .addComponent(radioSegurancaSim)
                     .addComponent(radioSegurancaNao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(radioArmazenamentoSim)
@@ -188,30 +202,28 @@ public class AlugarMotoView extends javax.swing.JFrame {
                 .addComponent(jLabel24)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtValorAluguelMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtIdMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Alugar Moto");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(btnCancelarMoto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnConfirmarMoto)
-                .addGap(32, 32, 32))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addGap(49, 49, 49)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancelarMoto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnConfirmarMoto)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,11 +232,11 @@ public class AlugarMotoView extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelarMoto)
                     .addComponent(btnConfirmarMoto))
-                .addGap(27, 27, 27))
+                .addGap(13, 13, 13))
         );
 
         pack();
@@ -236,10 +248,6 @@ public class AlugarMotoView extends javax.swing.JFrame {
         menu.setVisible(true);
     }//GEN-LAST:event_btnCancelarMotoActionPerformed
 
-    private void txtDataDevolucaoMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataDevolucaoMotoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDataDevolucaoMotoActionPerformed
-
     private void txtNomeMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeMotoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeMotoActionPerformed
@@ -247,6 +255,10 @@ public class AlugarMotoView extends javax.swing.JFrame {
     private void txtValorAluguelMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorAluguelMotoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtValorAluguelMotoActionPerformed
+
+    private void txtDataDevolucaoMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataDevolucaoMotoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDataDevolucaoMotoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,27 +277,27 @@ public class AlugarMotoView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AlugarMotoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarAlugueisMotoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AlugarMotoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarAlugueisMotoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AlugarMotoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarAlugueisMotoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AlugarMotoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarAlugueisMotoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AlugarMotoView().setVisible(true);
+                new EditarAlugueisMotoView().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup ItensArmazenamento;
-    private javax.swing.ButtonGroup ItensSeguranca;
+    private javax.swing.ButtonGroup RadioArmazenamento;
+    private javax.swing.ButtonGroup RadioItensSeguranca;
     private javax.swing.JButton btnCancelarMoto;
     private javax.swing.JButton btnConfirmarMoto;
     private javax.swing.JLabel jLabel1;
@@ -297,6 +309,7 @@ public class AlugarMotoView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JRadioButton radioArmazenamentoNao;
     private javax.swing.JRadioButton radioArmazenamentoSim;
@@ -305,6 +318,7 @@ public class AlugarMotoView extends javax.swing.JFrame {
     private javax.swing.JTextField txtCNHMoto;
     private javax.swing.JTextField txtDataDevolucaoMoto;
     private javax.swing.JTextField txtDataRetiradaMoto;
+    private javax.swing.JTextField txtIdMoto;
     private javax.swing.JTextField txtModeloMoto;
     private javax.swing.JTextField txtNomeMoto;
     private javax.swing.JTextField txtValorAluguelMoto;
