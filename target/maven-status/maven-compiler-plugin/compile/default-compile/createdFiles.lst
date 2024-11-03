@@ -1,4 +1,5 @@
 com\mycompany\aluguelveiculos\View\EditarAlugueisView$2.class
+com\mycompany\aluguelveiculos\View\ListarAlugueisView$3.class
 com\mycompany\aluguelveiculos\Model\Servico.class
 com\mycompany\aluguelveiculos\View\MenuAluguelView$4.class
 com\mycompany\aluguelveiculos\View\EditarAlugueisMotoView.class
@@ -6,6 +7,7 @@ com\mycompany\aluguelveiculos\View\EditarAlugueisView.class
 com\mycompany\aluguelveiculos\View\MenuAluguelView$6.class
 com\mycompany\aluguelveiculos\View\AlugarCarroView$5.class
 com\mycompany\aluguelveiculos\View\ListarAlugueisView$1.class
+com\mycompany\aluguelveiculos\View\EditarAlugueisView$7.class
 com\mycompany\aluguelveiculos\View\AlugarCarroView.class
 com\mycompany\aluguelveiculos\View\EditarAlugueisMotoView$5.class
 com\mycompany\aluguelveiculos\View\AlugarCarroView$2.class
@@ -13,16 +15,20 @@ com\mycompany\aluguelveiculos\View\EditarAlugueisMotoView$2.class
 com\mycompany\aluguelveiculos\View\MenuAluguelView$1.class
 com\mycompany\aluguelveiculos\View\MenuAluguelView.class
 com\mycompany\aluguelveiculos\View\AlugarCarroView$7.class
+com\mycompany\aluguelveiculos\View\EditarAlugueisView$6.class
 com\mycompany\aluguelveiculos\View\EditarAlugueisView$1.class
+com\mycompany\aluguelveiculos\View\ListarAlugueisView$4.class
 com\mycompany\aluguelveiculos\View\EditarAlugueisView$4.class
 com\mycompany\aluguelveiculos\View\MenuAluguelView$3.class
 com\mycompany\aluguelveiculos\View\MenuAluguelView$5.class
+com\mycompany\aluguelveiculos\View\ListarAlugueisView$2.class
 com\mycompany\aluguelveiculos\View\EditarAlugueisView$3.class
 com\mycompany\aluguelveiculos\View\EditarAlugueisMotoView$4.class
 com\mycompany\aluguelveiculos\Model\Moto.class
 com\mycompany\aluguelveiculos\View\AlugarCarroView$4.class
 com\mycompany\aluguelveiculos\Model\ListaServico.class
 com\mycompany\aluguelveiculos\View\AlugarCarroView$8.class
+com\mycompany\aluguelveiculos\View\EditarAlugueisView$5.class
 com\mycompany\aluguelveiculos\View\EditarAlugueisMotoView$1.class
 com\mycompany\aluguelveiculos\View\MenuAluguelView$2.class
 com\mycompany\aluguelveiculos\View\AlugarCarroView$1.class

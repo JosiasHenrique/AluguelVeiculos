@@ -107,27 +107,30 @@ public class ServicoController {
         for (int i = 0; i < ListaServico.getInstance().size(); i++) {
             Servico servico = ListaServico.getInstance().get(i);
 
-            jTabela.setValueAt(servico.getCnh(), posicaoLinha, 0);
-            jTabela.setValueAt(servico.getCliente(), posicaoLinha, 1);
-            jTabela.setValueAt(servico.getModeloVeiculo(), posicaoLinha, 2);
-            jTabela.setValueAt(servico.getDataRetirada(), posicaoLinha, 3);
-            jTabela.setValueAt(servico.getDataDevolucao(), posicaoLinha, 4);
-            jTabela.setValueAt(servico.isSeguro(), posicaoLinha, 5);
+            jTabela.setValueAt(servico.getId(), posicaoLinha, 0);
+            jTabela.setValueAt(servico.getCnh(), posicaoLinha, 1);
+            jTabela.setValueAt(servico.getCliente(), posicaoLinha, 2);
+            jTabela.setValueAt(servico.getModeloVeiculo(), posicaoLinha, 3);
+            jTabela.setValueAt(servico.getDataRetirada(), posicaoLinha, 4);
+            jTabela.setValueAt(servico.getDataDevolucao(), posicaoLinha, 5);
+            jTabela.setValueAt(servico.isSeguro(), posicaoLinha, 6);
 
             if (servico instanceof Carro) {
                 Carro carro = (Carro) servico;
-                jTabela.setValueAt(carro.getQtdPassageiro(), posicaoLinha, 6);
-                jTabela.setValueAt(carro.isReboque(), posicaoLinha, 7);
-                jTabela.setValueAt("Não se aplica", posicaoLinha, 8); // Campo específico para Moto
+                jTabela.setValueAt(carro.getQtdPassageiro(), posicaoLinha, 7);
+                jTabela.setValueAt(carro.isReboque(), posicaoLinha, 8);
                 jTabela.setValueAt("Não se aplica", posicaoLinha, 9); // Campo específico para Moto
+                jTabela.setValueAt("Não se aplica", posicaoLinha, 10); // Campo específico para Moto
+                jTabela.setValueAt(carro.calculoAluguel(), posicaoLinha, 11);
             } else if (servico instanceof Moto) {
                 Moto moto = (Moto) servico;
-                jTabela.setValueAt("Não se aplica", posicaoLinha, 6); // Campo específico para Carro
                 jTabela.setValueAt("Não se aplica", posicaoLinha, 7); // Campo específico para Carro
-                jTabela.setValueAt(moto.isItemDeSeguranca(), posicaoLinha, 8);
+                jTabela.setValueAt("Não se aplica", posicaoLinha, 8); // Campo específico para Carro
                 jTabela.setValueAt(moto.isItemDeSeguranca(), posicaoLinha, 9);
+                jTabela.setValueAt(moto.isItemDeSeguranca(), posicaoLinha, 10);
+                jTabela.setValueAt(moto.calculoAluguel(), posicaoLinha, 11);
             }
-
+            
             posicaoLinha += 1;
         }
     }

@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.aluguelveiculos.View;
+import com.mycompany.aluguelveiculos.Controller.ServicoController;
+
+import java.util.List;
 
 /**
  *
@@ -32,8 +35,6 @@ public class EditarAlugueisView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtValor = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtDataDevolucao = new javax.swing.JTextField();
@@ -50,8 +51,14 @@ public class EditarAlugueisView extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         txtPassageiros = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        txtIdCarro = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        txtBuscarIdCarro = new javax.swing.JTextField();
+        btnBuscarCarro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,8 +73,6 @@ public class EditarAlugueisView extends javax.swing.JFrame {
                 txtNomeActionPerformed(evt);
             }
         });
-
-        jLabel3.setText("Valor do aluguel:");
 
         jLabel4.setText("Data de retirada:");
 
@@ -101,7 +106,17 @@ public class EditarAlugueisView extends javax.swing.JFrame {
 
         jLabel11.setText("Quantidade de Passageiros:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedan", "SUV", "Esportivo" }));
+
+        jLabel9.setText("ID:");
+
+        txtIdCarro.setEditable(false);
+        txtIdCarro.setEnabled(false);
+        txtIdCarro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdCarroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,14 +149,14 @@ public class EditarAlugueisView extends javax.swing.JFrame {
                                 .addComponent(RadioSeguroSim)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(RadioSeguroNao))
-                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(radioReboqueSim)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(radioReboqueNao)))
+                                .addComponent(radioReboqueNao))
+                            .addComponent(jLabel9)
+                            .addComponent(txtIdCarro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -182,11 +197,10 @@ public class EditarAlugueisView extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(radioReboqueSim)
                     .addComponent(radioReboqueNao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtIdCarro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         btnCancelar.setText("Cancelar Alteração");
@@ -200,35 +214,84 @@ public class EditarAlugueisView extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Editar Aluguel do Carro");
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar Cadastro"));
+
+        jLabel3.setText("ID:");
+
+        txtBuscarIdCarro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarIdCarroActionPerformed(evt);
+            }
+        });
+
+        btnBuscarCarro.setText("Buscar");
+        btnBuscarCarro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarCarroActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtBuscarIdCarro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBuscarCarro)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtBuscarIdCarro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarCarro))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(jLabel1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnCancelar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnConfirmar)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnConfirmar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConfirmar)
                     .addComponent(btnCancelar))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -247,6 +310,30 @@ public class EditarAlugueisView extends javax.swing.JFrame {
         MenuAluguelView menu = new MenuAluguelView();
         menu.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtIdCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdCarroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdCarroActionPerformed
+
+    private void btnBuscarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCarroActionPerformed
+        
+         int id = Integer.parseInt(txtBuscarIdCarro.getText());
+        
+        ServicoController listaController = new ServicoController();
+        
+        List<Object> dadosVeiculo = listaController.pesquisar(id);
+        
+        if(dadosVeiculo != null){
+            txtBuscarIdCarro.setText(dadosVeiculo.get(0).toString());
+            txtNome.setText((String) dadosVeiculo.get(1));
+            txtCNH.setText((String) dadosVeiculo.get(2));
+            txtDataRetirada.setText((String) dadosVeiculo.get(3));
+        }
+    }//GEN-LAST:event_btnBuscarCarroActionPerformed
+
+    private void txtBuscarIdCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarIdCarroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarIdCarroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,6 +375,7 @@ public class EditarAlugueisView extends javax.swing.JFrame {
     private javax.swing.ButtonGroup RadioSeguro;
     private javax.swing.JRadioButton RadioSeguroNao;
     private javax.swing.JRadioButton RadioSeguroSim;
+    private javax.swing.JButton btnBuscarCarro;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -301,14 +389,17 @@ public class EditarAlugueisView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton radioReboqueNao;
     private javax.swing.JRadioButton radioReboqueSim;
+    private javax.swing.JTextField txtBuscarIdCarro;
     private javax.swing.JTextField txtCNH;
     private javax.swing.JTextField txtDataDevolucao;
     private javax.swing.JTextField txtDataRetirada;
+    private javax.swing.JTextField txtIdCarro;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPassageiros;
-    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }
