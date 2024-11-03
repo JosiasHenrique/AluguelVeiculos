@@ -57,7 +57,7 @@ public class ServicoController {
             Date dataRetirada = servico.getDataRetirada();
             Date dataDevolucao = servico.getDataDevolucao();
             boolean seguro = servico.isSeguro();
-            double valorAluguel = servico.getValorAluguel();
+            double valorAluguel = servico.calculoAluguel();
 
             List<Object> dados = new ArrayList<>(Arrays.asList(id, cnh, cliente, modeloVeiculo, dataRetirada,
                     dataDevolucao, seguro, valorAluguel));

@@ -9,12 +9,14 @@ package com.mycompany.aluguelveiculos.View;
  * @author android
  */
 public class AlugarCarroView extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form AlugarCarroView
      */
     public AlugarCarroView() {
         initComponents();
+        
     }
 
     /**
@@ -195,6 +197,11 @@ public class AlugarCarroView extends javax.swing.JFrame {
         );
 
         btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -251,6 +258,11 @@ public class AlugarCarroView extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**
      * @param args the command line arguments

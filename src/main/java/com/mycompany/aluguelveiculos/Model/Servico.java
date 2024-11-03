@@ -1,17 +1,17 @@
 package com.mycompany.aluguelveiculos.Model;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public abstract class Servico {
+
     private int id, cnh;
     private String cliente, modeloVeiculo;
     private Date dataRetirada, dataDevolucao;
     private boolean seguro;
-    private double valorAluguel;
 
     public Servico(int id, int cnh, String cliente, String modeloVeiculo,
-            Date dataRetirada, Date dataDevolucao, boolean seguro,
-            double valorAluguel) {
+            Date dataRetirada, Date dataDevolucao, boolean seguro) {
         this.id = id;
         this.cnh = cnh;
         this.cliente = cliente;
@@ -19,7 +19,6 @@ public abstract class Servico {
         this.dataRetirada = dataRetirada;
         this.dataDevolucao = dataDevolucao;
         this.seguro = seguro;
-        this.valorAluguel = valorAluguel;
     }
 
     public int getId() {
@@ -78,26 +77,11 @@ public abstract class Servico {
         this.seguro = seguro;
     }
 
-    public double getValorAluguel() {
-        return valorAluguel;
+    protected long calcularDias() {
+        long diffInMillies = Math.abs(dataDevolucao.getTime() - dataRetirada.getTime());
+        return TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 
-    public void setValorAluguel(double valorAluguel) {
-        this.valorAluguel = valorAluguel;
-    }
-    
-    public void calculoAluguel(){}
+    public abstract double calculoAluguel();
 
-    @Override
-    public String toString() {
-        return "Servico{" + "id=" + id +
-                ", cnh=" + cnh + ", cliente=" +
-                cliente + ", modeloVeiculo=" +
-                modeloVeiculo + ", dataRetirada=" +
-                dataRetirada + ", dataDevolucao=" +
-                dataDevolucao + ", seguro=" +
-                seguro + ", valorAluguel=" +
-                valorAluguel + '}';
-    }
-    
 }
