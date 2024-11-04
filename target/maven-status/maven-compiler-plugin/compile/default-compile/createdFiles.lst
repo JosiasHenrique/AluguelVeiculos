@@ -24,6 +24,7 @@ com\mycompany\aluguelveiculos\View\MenuAluguelView$5.class
 com\mycompany\aluguelveiculos\View\ListarAlugueisView$2.class
 com\mycompany\aluguelveiculos\View\EditarAlugueisView$3.class
 com\mycompany\aluguelveiculos\View\EditarAlugueisMotoView$4.class
+com\mycompany\aluguelveiculos\View\EditarAlugueisView$8.class
 com\mycompany\aluguelveiculos\Model\Moto.class
 com\mycompany\aluguelveiculos\View\AlugarCarroView$4.class
 com\mycompany\aluguelveiculos\Model\ListaServico.class

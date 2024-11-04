@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.aluguelveiculos.View;
+
 import com.mycompany.aluguelveiculos.Controller.ServicoController;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import java.util.List;
 
@@ -50,7 +53,7 @@ public class EditarAlugueisView extends javax.swing.JFrame {
         radioReboqueNao = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
         txtPassageiros = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        editComboModelo = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         txtIdCarro = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
@@ -63,6 +66,11 @@ public class EditarAlugueisView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnConfirmar.setText("Confirmar Alteração");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Editar Cadastro de Carro"));
 
@@ -106,7 +114,7 @@ public class EditarAlugueisView extends javax.swing.JFrame {
 
         jLabel11.setText("Quantidade de Passageiros:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedan", "SUV", "Esportivo" }));
+        editComboModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedan", "SUV", "Esportivo" }));
 
         jLabel9.setText("ID:");
 
@@ -125,7 +133,7 @@ public class EditarAlugueisView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editComboModelo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtNome)
                     .addComponent(txtCNH)
                     .addComponent(txtPassageiros)
@@ -182,7 +190,7 @@ public class EditarAlugueisView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(editComboModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -316,24 +324,61 @@ public class EditarAlugueisView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdCarroActionPerformed
 
     private void btnBuscarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCarroActionPerformed
-        
-         int id = Integer.parseInt(txtBuscarIdCarro.getText());
-        
+
+        int id = Integer.parseInt(txtBuscarIdCarro.getText());
+
         ServicoController listaController = new ServicoController();
-        
+
         List<Object> dadosVeiculo = listaController.pesquisar(id);
-        
-        if(dadosVeiculo != null){
+
+        if (dadosVeiculo != null) {
             txtBuscarIdCarro.setText(dadosVeiculo.get(0).toString());
-            txtNome.setText((String) dadosVeiculo.get(1));
-            txtCNH.setText((String) dadosVeiculo.get(2));
-            txtDataRetirada.setText((String) dadosVeiculo.get(3));
+            txtCNH.setText(dadosVeiculo.get(1).toString());
+            txtNome.setText((String) dadosVeiculo.get(2));
+
+            String modeloVeiculo = (String) dadosVeiculo.get(3);
+            editComboModelo.setSelectedItem(modeloVeiculo);
+
+            Date dataRetirada = (Date) dadosVeiculo.get(4);
+            Date dataDevolucao = (Date) dadosVeiculo.get(5);
+
+            // Formatação das datas
+            SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+            txtDataRetirada.setText(formatoData.format(dataRetirada));
+            txtDataDevolucao.setText(formatoData.format(dataDevolucao));
+
+            boolean seguro = (Boolean) dadosVeiculo.get(6);
+            RadioSeguroSim.setSelected(seguro);
+            RadioSeguroNao.setSelected(!seguro);
         }
     }//GEN-LAST:event_btnBuscarCarroActionPerformed
 
     private void txtBuscarIdCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarIdCarroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarIdCarroActionPerformed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+
+        int id = Integer.parseInt(txtBuscarIdCarro.getText());
+        int cnh = Integer.parseInt(txtCNH.getText()); 
+        String cliente = txtNome.getText();
+        String modeloVeiculo = (String) editComboModelo.getSelectedItem(); 
+
+        
+        String dataRetirada = txtDataRetirada.getText();
+        String dataDevolucao = txtDataDevolucao.getText();
+
+        
+        boolean seguro = RadioSeguroSim.isSelected();
+
+        ServicoController servicoController = new ServicoController();
+        servicoController.editar(id, cnh, cliente, modeloVeiculo, dataRetirada, dataDevolucao, seguro);
+
+        this.dispose();
+        MenuAluguelView menu = new MenuAluguelView();
+        menu.setVisible(true);
+
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -378,7 +423,7 @@ public class EditarAlugueisView extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarCarro;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> editComboModelo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -103,6 +103,7 @@ public class ServicoController {
         jTabela.setModel(dtm);
 
         int posicaoLinha = 0;
+        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
 
         for (int i = 0; i < ListaServico.getInstance().size(); i++) {
             Servico servico = ListaServico.getInstance().get(i);
@@ -111,8 +112,8 @@ public class ServicoController {
             jTabela.setValueAt(servico.getCnh(), posicaoLinha, 1);
             jTabela.setValueAt(servico.getCliente(), posicaoLinha, 2);
             jTabela.setValueAt(servico.getModeloVeiculo(), posicaoLinha, 3);
-            jTabela.setValueAt(servico.getDataRetirada(), posicaoLinha, 4);
-            jTabela.setValueAt(servico.getDataDevolucao(), posicaoLinha, 5);
+            jTabela.setValueAt(formatoData.format(servico.getDataRetirada()), posicaoLinha, 4);
+            jTabela.setValueAt(formatoData.format(servico.getDataDevolucao()), posicaoLinha, 5);
             jTabela.setValueAt(servico.isSeguro(), posicaoLinha, 6);
 
             if (servico instanceof Carro) {
@@ -130,7 +131,7 @@ public class ServicoController {
                 jTabela.setValueAt(moto.isItemDeSeguranca(), posicaoLinha, 10);
                 jTabela.setValueAt(moto.calculoAluguel(), posicaoLinha, 11);
             }
-            
+
             posicaoLinha += 1;
         }
     }
@@ -156,9 +157,8 @@ public class ServicoController {
         }
     }
 
-    public void editar(int id, int cnh, String cliente, String modeloVeiculo, Date dataRetirada,
-            Date dataDevolucao, boolean seguro, double valorAluguel, boolean itemDeSeguranca,
-            boolean itemDeArmazenamento, int qtdPassageiro, boolean reboque) {
+    public void editar(int id, int cnh, String cliente, String modeloVeiculo, String dataRetirada,
+            String dataDevolucao, boolean seguro) {
 
         int resposta = JOptionPane.showConfirmDialog(
                 null,
@@ -168,27 +168,29 @@ public class ServicoController {
         );
 
         if (resposta == JOptionPane.YES_OPTION) {
-
             int posicao = pesquisarVeiculo(id);
 
             Servico servico = ListaServico.getInstance().get(posicao);
 
+            SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+            Date dataRetiradaDate = null;
+            Date dataDevolucaoDate = null;
+
+            try {
+                dataRetiradaDate = formatoData.parse(dataRetirada);
+                dataDevolucaoDate = formatoData.parse(dataDevolucao);
+            } catch (ParseException e) {
+                JOptionPane.showMessageDialog(null, "Erro ao converter as datas. Verifique o formato.", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Atualiza os dados do serviço
             servico.setCnh(cnh);
             servico.setCliente(cliente);
             servico.setModeloVeiculo(modeloVeiculo);
-            servico.setDataRetirada(dataRetirada);
-            servico.setDataDevolucao(dataDevolucao);
+            servico.setDataRetirada(dataRetiradaDate);
+            servico.setDataDevolucao(dataDevolucaoDate);
             servico.setSeguro(seguro);
-
-            if (servico instanceof Carro) {
-                Carro carro = (Carro) servico;
-                carro.setQtdPassageiro(qtdPassageiro);
-                carro.setReboque(reboque);
-            } else if (servico instanceof Moto) {
-                Moto moto = (Moto) servico;
-                moto.setItemDeSeguranca(itemDeSeguranca);
-                moto.setItemDeArmazenamento(itemDeArmazenamento);
-            }
 
             ListaServico.getInstance().set(posicao, servico);
 
